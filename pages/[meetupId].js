@@ -20,7 +20,7 @@ export const getStaticPaths = async () => {
 	const meetups = await meetupCollection.find({}, { _id: 1 }).toArray(); //first arg defines that no filter is added second argument defines which fields should be extracted
 	client.close();
 	return {
-		fallback: false,
+		fallback: 'blocking',
 		paths: meetups.map((meetup) => ({
 			params: { meetupId: meetup._id.toString() }, //dynamically generating arraay of paths
 		})),
