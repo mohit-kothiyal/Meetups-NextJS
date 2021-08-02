@@ -1,15 +1,7 @@
 import { MongoClient } from 'mongodb';
 import MeetupList from '../components/meetups/MeetupList';
 import Head from 'next/head';
-const DUMMY_DATA = [
-	{
-		id: 'm1',
-		image:
-			'https://cdn.britannica.com/26/84526-050-45452C37/Gateway-monument-India-entrance-Mumbai-Harbour-coast.jpg',
-		title: 'My First API',
-		address: '1745 T Street Southeast',
-	},
-];
+
 const HomePage = (props) => {
 	return (
 		<>

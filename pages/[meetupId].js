@@ -1,14 +1,21 @@
 import { MongoClient, ObjectId } from 'mongodb';
+import Head from 'next/head';
 import MeetupDetail from '../components/meetups/MeetupDetail';
 
 const MeetupDetails = (props) => {
 	return (
-		<MeetupDetail
-			image={props.meetupData.image}
-			title={props.meetupData.title}
-			address={props.meetupData.address}
-			description={props.meetupData.description}
-		/>
+		<>
+			<Head>
+				<title>{props.meetupData.title}</title>
+				<meta name="description" content={props.meetupData.description} />
+			</Head>
+			<MeetupDetail
+				image={props.meetupData.image}
+				title={props.meetupData.title}
+				address={props.meetupData.address}
+				description={props.meetupData.description}
+			/>
+		</>
 	);
 };
 export const getStaticPaths = async () => {
@@ -17,6 +24,7 @@ export const getStaticPaths = async () => {
 	);
 	const db = client.db();
 	const meetupCollection = db.collection('meetups');
+
 	const meetups = await meetupCollection.find({}, { _id: 1 }).toArray(); //first arg defines that no filter is added second argument defines which fields should be extracted
 	client.close();
 	return {
